@@ -67,6 +67,11 @@ public class FileZipper extends JFrame {
         public Object get(int index) {
             return lista.get(index);
         }
+        @Override
+        public Object remove(int index) {
+            lista.remove(index);
+            return super.remove(index);
+        }
 
         ArrayList lista = new ArrayList();
     };
@@ -99,7 +104,8 @@ public class FileZipper extends JFrame {
                 //System.out.println("Dodawanie");
             }
             else if (e.getActionCommand().equals("Usun")) {
-                System.out.println("Usuwanie");
+                usuwanieWpisowZListy();
+                //System.out.println("Usuwanie");
             } else if (e.getActionCommand().equals("Zip")) {
                 System.out.println("Zipowanie");
             }
@@ -127,6 +133,13 @@ public class FileZipper extends JFrame {
                     return true;
             }
             return false;
+        }
+        private void usuwanieWpisowZListy() {
+            int[] tmp = lista.getSelectedIndices();
+            for (int i = 0; i < tmp.length; i++) {
+                modelListy.remove(tmp[i]-i);
+            }
+
         }
     }
 }
